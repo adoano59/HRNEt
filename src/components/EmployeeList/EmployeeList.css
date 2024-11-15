@@ -1,0 +1,70 @@
+.employee-list {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+  }
+  
+  .employee-list h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .employee-list table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+  }
+  
+  .employee-list th,
+  .employee-list td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+  }
+  
+  .employee-list th {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 14px;
+  }
+  
+  .employee-list tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .employee-list tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+
+  .employee-list td:last-child {
+    font-size: 13px;
+    color: #555;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  
+ 
+  @media (max-width: 768px) {
+    .employee-list table {
+      font-size: 14px;
+    }
+  
+    .employee-list td,
+    .employee-list th {
+      padding: 8px 10px;
+    }
+  
+    .employee-list h2 {
+      font-size: 20px;
+    }
+  }

@@ -1,0 +1,68 @@
+.formAddEmployee {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+
+.formAddEmployee label {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    font-weight: bold;
+    font-size: 14px;
+    color: #333;
+}
+
+.formAddEmployee input {
+    margin-top: 5px;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+.formAddEmployee input:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+
+button[type="submit"] {
+    margin: auto;
+    display: block;
+    width: 10%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+
+@media (max-width: 768px) {
+    .formAddEmployee {
+        padding: 15px;
+    }
+
+    button[type="submit"] {
+        font-size: 14px;
+    }
+}
