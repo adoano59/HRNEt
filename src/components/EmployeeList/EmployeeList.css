@@ -1,70 +1,42 @@
 .employee-list {
-    max-width: 900px;
-    margin: 30px auto;
-    padding: 20px;
-    background-color: #ffffff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    font-family: Arial, sans-serif;
+    margin: 20px auto;
+    width: 90%;
   }
   
-  .employee-list h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 24px;
-    color: #333;
-  }
-  
-  .employee-list table {
+  table {
     width: 100%;
     border-collapse: collapse;
-    text-align: left;
+    margin-top: 10px;
   }
   
-  .employee-list th,
-  .employee-list td {
-    padding: 12px 15px;
+  th,
+  td {
     border: 1px solid #ddd;
+    text-align: left;
+    padding: 8px;
   }
   
-  .employee-list th {
-    background-color: #007bff;
-    color: white;
-    font-weight: bold;
-    text-transform: uppercase;
-    font-size: 14px;
+  th {
+    background-color: #f4f4f4;
+    cursor: pointer;
   }
   
-  .employee-list tr:nth-child(even) {
-    background-color: #f9f9f9;
+  .global-filter {
+    margin-bottom: 10px;
   }
   
-  .employee-list tr:hover {
-    background-color: #f1f1f1;
+  .pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
   }
   
-
-  .employee-list td:last-child {
-    font-size: 13px;
-    color: #555;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
+  .pagination button {
+    padding: 5px 10px;
+    margin: 0 5px;
   }
   
- 
-  @media (max-width: 768px) {
-    .employee-list table {
-      font-size: 14px;
-    }
-  
-    .employee-list td,
-    .employee-list th {
-      padding: 8px 10px;
-    }
-  
-    .employee-list h2 {
-      font-size: 20px;
-    }
+  .pagination select {
+    padding: 5px;
   }

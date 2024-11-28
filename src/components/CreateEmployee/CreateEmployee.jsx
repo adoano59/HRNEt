@@ -1,19 +1,25 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { addEmployee } from '../../redux/employeeSlice'
 import DatePicker from 'react-datepicker'
 import Select from 'react-select'
 import 'react-datepicker/dist/react-datepicker.css'
 import './CreateEmployee.css'
+import Modal from 'modal-by-tamagoultanouar';
+import 'modal-by-tamagoultanouar/modal.css';
 
 
 
 const CreateEmployee = () => {
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     firstName: '', lastName: '', startDate: '',
     department: '', birthDate: '',
     street: '', city: '', state: '', zipCode: ''
   })
+
+  const [isModalOpen, setIsModalOpen] = useState(false) // État pour la modale
 
   const dispatch = useDispatch()
 
@@ -21,7 +27,9 @@ const CreateEmployee = () => {
     const { name, value } = e.target
     setFormData({ ...formData, [name]: value })
   }
-
+  const handleShowList = () => {
+    navigate('/list'); // Redirige vers la page des employés
+  }
   const handleDateChange = (date, field) => {
     setFormData({ ...formData, [field]: date })
   }
@@ -34,9 +42,22 @@ const CreateEmployee = () => {
       birthDate: formData.birthDate.toISOString(),
       startDate: formData.startDate.toISOString(),
     }
-    dispatch(addEmployee(formattedEmployee));
-    setFormData({ firstName: '', lastName: '', startDate: '', department: '', birthDate: '', street: '', city: '', state: '', zipCode: '' });
+    dispatch(addEmployee(formattedEmployee))
+    
+    // Réinitialiser le formulaire
+    setFormData({ 
+      firstName: '', lastName: '', startDate: '', department: '', 
+      birthDate: '', street: '', city: '', state: '', zipCode: '' 
+    })
+
+    // Ouvrir la modale après soumission
+    setIsModalOpen(true)
   }
+
+  const closeModal = () => {
+    setIsModalOpen(false)
+  }
+
   const usStates = [
     { value: 'AL', label: 'Alabama' },
     { value: 'AK', label: 'Alaska' },
@@ -90,7 +111,6 @@ const CreateEmployee = () => {
     { value: 'WY', label: 'Wyoming' },
   ]
 
-
   const Department = [
     { value: 'Sales', label: 'Sales' },
     { value: 'Marketing', label: 'Marketing' },
@@ -99,55 +119,69 @@ const CreateEmployee = () => {
     { value: 'Legal', label: 'Legal' },
   ]
 
-
   return (
-    <form onSubmit={handleSubmit}>
-      <div className='formAddEmployee'>
-        <label>First Name:<input name="firstName" placeholder="First Name" value={formData.firstName} onChange={handleChange} required /></label>
-        <label>Last Name:<input name="lastName" placeholder="Last Name" value={formData.lastName} onChange={handleChange} required /></label>
-        <label>Date of Birth:
-          <DatePicker
-            selected={formData.birthDate}
-            onChange={(date) => handleDateChange(date, 'birthDate')}
-            dateFormat="yyyy/MM/dd"
-            showYearDropdown
-            showMonthDropdown
-            dropdownMode="select"
-            required />
-        </label>
-        <label>
-          Start Date:
-          <DatePicker
-            selected={formData.startDate}
-            onChange={(date) => handleDateChange(date, 'startDate')}
-            dateFormat="yyyy/MM/dd"
-            showYearDropdown
-            showMonthDropdown
-            dropdownMode="select"
-            required
-          />
-        </label>
-        <label>Street:<input name="street" placeholder="Street" value={formData.street} onChange={handleChange} required /></label>
-        <label>City:<input name="city" placeholder="City" value={formData.city} onChange={handleChange} required /></label>
-        <label>
-          State:
-          <Select
-            options={usStates}
-            value={usStates.find(option => option.value === formData.state)} // Définit la valeur sélectionnée
-            onChange={(selectedOption) => setFormData({ ...formData, state: selectedOption.value })}
-            placeholder="Select State"
-          />
-        </label>
-        <label>Zip Code:<input name="zipCode" placeholder="Zip Code" value={formData.zipCode} onChange={handleChange} required /></label>
-        <label>Department:<Select
-          options={Department}
-          value={Department.find(option => option.value === formData.department)} // Définit la valeur sélectionnée
-          onChange={(selectedOption) => setFormData({ ...formData, department: selectedOption.value })}
-          placeholder="Select Department"
-        /></label>
-      </div>
-      <button type="submit">Add Employee</button>
-    </form>
+    <>
+      <form onSubmit={handleSubmit}>
+        <div className='formAddEmployee'>
+          <label>First Name:<input name="firstName" placeholder="First Name" value={formData.firstName} onChange={handleChange} required /></label>
+          <label>Last Name:<input name="lastName" placeholder="Last Name" value={formData.lastName} onChange={handleChange} required /></label>
+          <label>Date of Birth:
+            <DatePicker
+              selected={formData.birthDate}
+              onChange={(date) => handleDateChange(date, 'birthDate')}
+              dateFormat="yyyy/MM/dd"
+              showYearDropdown
+              showMonthDropdown
+              dropdownMode="select"
+              required />
+          </label>
+          <label>
+            Start Date:
+            <DatePicker
+              selected={formData.startDate}
+              onChange={(date) => handleDateChange(date, 'startDate')}
+              dateFormat="yyyy/MM/dd"
+              showYearDropdown
+              showMonthDropdown
+              dropdownMode="select"
+              required
+            />
+          </label>
+          <label>Street:<input name="street" placeholder="Street" value={formData.street} onChange={handleChange} required /></label>
+          <label>City:<input name="city" placeholder="City" value={formData.city} onChange={handleChange} required /></label>
+          <label>
+            State:
+            <Select
+              options={usStates}
+              value={usStates.find(option => option.value === formData.state)}
+              onChange={(selectedOption) => setFormData({ ...formData, state: selectedOption.value })}
+              placeholder="Select State"
+            />
+          </label>
+          <label>Zip Code:<input name="zipCode" placeholder="Zip Code" value={formData.zipCode} onChange={handleChange} required /></label>
+          <label>Department:<Select
+            options={Department}
+            value={Department.find(option => option.value === formData.department)}
+            onChange={(selectedOption) => setFormData({ ...formData, department: selectedOption.value })}
+            placeholder="Select Department"
+          /></label>
+        </div>
+        <button type="submit">Add Employee</button>
+        <br />
+        <button type="button" onClick={handleShowList}>Show List</button>
+      </form>
+ {/* Modale conditionnelle */}
+ {isModalOpen && (
+        <Modal
+        header="Success!"
+        body={<p>Employee has been successfully added.</p>}
+        footer={<button onClick={closeModal}>Close</button>}
+        isOpen={isModalOpen}
+      >
+      </Modal>
+      )}
+     
+    </>
   )
 }
 

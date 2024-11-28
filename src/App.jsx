@@ -1,10 +1,7 @@
-import React from 'react';
+import React from 'react'
+import './styles/global.css'
+import CreateEmployee from './components/CreateEmployee/CreateEmployee.jsx'
 
-import './styles/global.css';
-
-
-import CreateEmployee from './components/CreateEmployee/CreateEmployee.jsx';
-import EmployeeList from './components/EmployeeList/EmployeeList.jsx';
 
 const App = () => {
   return (
@@ -15,4 +12,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default App
