@@ -166,16 +166,16 @@ const CreateEmployee = () => {
             placeholder="Select Department"
           /></label>
         </div>
-        <button type="submit">Add Employee</button>
+        <button className='btnAdd' type="submit">Add Employee</button>
         <br />
-        <button type="button" onClick={handleShowList}>Show List</button>
+        <button className='btnShow' type="button" onClick={handleShowList}>Show List</button>
       </form>
  {/* Modale conditionnelle */}
  {isModalOpen && (
         <Modal
         header="Success!"
         body={<p>Employee has been successfully added.</p>}
-        footer={<button onClick={closeModal}>Close</button>}
+        footer={<button className='close-button' onClick={closeModal}>X</button>}
         isOpen={isModalOpen}
       >
       </Modal>

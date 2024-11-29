@@ -72,7 +72,7 @@ const EmployeeList = () => {
   return (
     <div className="employee-list">
       <h2>Employee List</h2>
-      <button type="button" onClick={handleReturnHome}>Add Employee</button>
+      <button className='btnShow' type="button" onClick={handleReturnHome}>Add Employee</button>
 
       {/* Barre de recherche */}
       <GlobalFilter

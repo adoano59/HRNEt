@@ -37,8 +37,8 @@
 }
 
 
-button {
-    
+.btnAdd, .btnShow {
+
     margin: auto;
     display: block;
     width: 10%;
